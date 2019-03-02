@@ -8,6 +8,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <script src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
     <title>Blueprint Hysteria</title>
 
     <style>
@@ -58,6 +59,34 @@
     	background: linear-gradient(to right, #FCAF58 0%, #FF8C42 100%);
     }
 	</style>
+
+    <!-- fetching and auto updating video javascript --> 
+    <script type="text/javascript">
+      
+      var channelID = "UCjMTjOMUGit5lbDT3toa1ig";
+      var reqURL = "https://www.youtube.com/feeds/videos.xml?channel_id=";
+      
+      $.getJSON("https://www.googleapis.com/youtube/v3/search?key=AIzaSyAk_VlMu8OzPfl8LmYWxT7SAgin029OF3E&channelId=UCjMTjOMUGit5lbDT3toa1ig&part=snippet,id&order=date&maxResults=50", function(data) {
+        console.log(data)
+          
+          var title = "a"
+
+          var i = 0
+          while(i < data.items.length - 3){
+              var html = [
+                 '<div class="card-deck"><div class="card"><iframe height="315" frameborder="0" src="https://youtube.com/embed/'+ data.items[i].id.videoId + '?" controls=0" frameborder="0" ></iframe><div class="card-body"><h5 class="card-title">' + data.items[i].snippet.title + '</h5><p class="card-text">' + data.items[i].snippet.description + '</p><a id="link" href=" ' + "https://youtube.com/embed/"+ data.items[i].id.videoId + "?controls=0&showinfo=0&rel=0" + ' "><button  type="button" class="btn btn-outline-primary btn-sm">View</button></a></div></div><div class="card"><iframe height="315" frameborder="0" src="https://youtube.com/embed/'+ data.items[i + 1].id.videoId + '?" controls=0" frameborder="0" ></iframe><div class="card-body"><h5 class="card-title">' + data.items[i + 1].snippet.title + '</h5><p class="card-text">'+ data.items[i + 1].snippet.description +'</p><a id="link" href=" ' + "https://youtube.com/embed/" + data.items[i + 1].id.videoId + "?controls=0&showinfo=0&rel=0" + ' "><button type="button" class="btn btn-outline-primary btn-sm">View</button></a></div></div><div class="card"><iframe height="315" frameborder="0" src="https://youtube.com/embed/'+ data.items[i + 2].id.videoId + '?" controls=0" frameborder="0" ></iframe><div class="card-body"><h5 id="title2" class="card-title">' + data.items[i + 2].snippet.title + '</h5><p id="desc2" class="card-text">' + data.items[i + 2].snippet.description + '</p><a id="link" href=" ' + "https://youtube.com/embed/"+ data.items[i + 2].id.videoId + "?controls=0&showinfo=0&rel=0" + ' "><button type="button" class="btn btn-outline-primary btn-sm">View</button></a></div></div></div><br/>'
+              ].join("\n");
+              // html: '<div ...>\n<h1 ...>Constructing HTML Elements<h1>\n</div>'
+
+              $("#container").append(html);
+
+              i = i + 3
+            }
+
+      });
+      </script>
+
+
   </head>
   <body>
   	<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
@@ -98,11 +127,13 @@
 		<h1 class="text-center">All</h1>
 		<br/>
 		<br/>
-		<div class="container">
-		   <iframe width="600" height="340" src="https://www.youtube.com/embed?max-results=1&controls=0&showinfo=0&rel=0&listType=user_uploads&list=Blueprint_Hysteria" frameborder="0" allowfullscreen></iframe> 
+		
+    <div id="container" class="container">
 
-    </div>
-			  
+      
+		</div>
+       <br/>
+       <br/>
 	</div>
 	
 
@@ -157,11 +188,6 @@
   </footer>
   <!-- Footer -->
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
   </body>
 
 

@@ -66,24 +66,32 @@
 	       var channelID = "UCjMTjOMUGit5lbDT3toa1ig";
 			var reqURL = "https://www.youtube.com/feeds/videos.xml?channel_id=";
 			
-			$.getJSON("https://api.rss2json.com/v1/api.json?rss_url=" + encodeURIComponent(reqURL)+channelID, function(data) {
+			$.getJSON("https://www.googleapis.com/youtube/v3/search?key=AIzaSyAk_VlMu8OzPfl8LmYWxT7SAgin029OF3E&channelId=UCjMTjOMUGit5lbDT3toa1ig&part=snippet,id&order=date&maxResults=50", function(data) {
+				console.log(data)
+				console.log(data.items[0].id.videoId)
 
-			    var link = data.items[0].link;
-			   	var id = link.substr(link.indexOf("=")+1);
+			   	var id = data.items[0].id.videoId;
 
-			   	var link1 = data.items[1].link;
-			   	var id1 = link1.substr(link.indexOf("=")+1);
+			   	var id1 = data.items[1].id.videoId;
 
-			   	var link2 = data.items[2].link;
-			    var id2 = link2.substr(link.indexOf("=")+1);
+			    var id2 = data.items[2].id.videoId;
 
 			    document.getElementById("video").src = "https://youtube.com/embed/"+ id + "?controls=0&showinfo=0&rel=0"
 			    document.getElementById("video1").src = "https://youtube.com/embed/"+ id1 + "?controls=0&showinfo=0&rel=0"
 			    document.getElementById("video2").src = "https://youtube.com/embed/"+ id2 + "?controls=0&showinfo=0&rel=0"
 
-			    document.getElementById("title").innerHTML = data.items[0].title
-			    document.getElementById("title1").innerHTML= data.items[1].title
-			    document.getElementById("title2").innerHTML = data.items[2].title
+			    document.getElementById("title").innerHTML = data.items[0].snippet.title;
+			    document.getElementById("title1").innerHTML= data.items[1].snippet.title;
+			    document.getElementById("title2").innerHTML = data.items[2].snippet.title;
+
+			    document.getElementById("desc").innerHTML = data.items[0].snippet.description;
+			    document.getElementById("desc1").innerHTML= data.items[1].snippet.description;
+			    document.getElementById("desc2").innerHTML = data.items[2].snippet.description;
+
+			    document.getElementById("link").href = "https://youtube.com/embed/"+ id + "?controls=0&showinfo=0&rel=0";
+			    document.getElementById("link1").href= "https://youtube.com/embed/"+ id1 + "?controls=0&showinfo=0&rel=0";
+			    document.getElementById("link2").href = "https://youtube.com/embed/"+ id2 + "?controls=0&showinfo=0&rel=0";
+			    console.log(data)
 			});
 	    </script>
 
@@ -156,9 +164,8 @@
 			    <iframe id="video" height="315" frameborder="0"></iframe>
 			    <div class="card-body">
 			      <h5 id="title" class="card-title">Video Title</h5>
-			      <p class="card-text">Brief description of the video. Can be yay long,  consectetur adipiscing elit. Nullam in nisl felis. Nulla vel eros tristique, vehicula ante ut, laoreet turpis. Mauris</p>
-			      <p class="card-text"><small class="text-muted">Posted: 2/3/4, customise me!</small></p>
-			      <button type="button" class="btn btn-outline-primary btn-sm">View</button>
+			      <p id="desc" class="card-text">Brief description of the video. Can be yay long,  consectetur adipiscing elit. Nullam in nisl felis. Nulla vel eros tristique, vehicula ante ut, laoreet turpis. Mauris</p>
+			      <a id="link" href=""><button  type="button" class="btn btn-outline-primary btn-sm">View</button></a>
 			    </div>
 			  </div>
 
@@ -166,10 +173,9 @@
 			  <div class="card">
 			    <iframe id="video1" height="315" frameborder="0"></iframe>
 			    <div class="card-body">
-			      <h5 id="title3" class="card-title">Video Title</h5>
-			      <p class="card-text">Brief description of the video. Can be yay long,  consectetur adipiscing elit. Nullam in nisl felis. Nulla vel eros tristique, vehicula ante ut, laoreet turpis. Mauris</p>
-			      <p class="card-text"><small class="text-muted">Posted: 2/3/4</small></p>
-			      <button type="button" class="btn btn-outline-primary btn-sm">View</button>
+			      <h5 id="title1" class="card-title">Video Title</h5>
+			      <p id="desc1" class="card-text">Brief description of the video. Can be yay long,  consectetur adipiscing elit. Nullam in nisl felis. Nulla vel eros tristique, vehicula ante ut, laoreet turpis. Mauris</p>
+			      <a id="link1" href=""><button type="button" class="btn btn-outline-primary btn-sm">View</button></a>
 			    </div>
 			  </div>
 
@@ -178,9 +184,8 @@
 			    <iframe id="video2" height="315" frameborder="0"></iframe>
 			    <div class="card-body">
 			      <h5 id="title2" class="card-title">Video Title</h5>
-			      <p class="card-text">Brief description of the video. Can be yay long,  consectetur adipiscing elit. Nullam in nisl felis. Nulla vel eros tristique, vehicula ante ut, laoreet turpis. Mauris</p>
-			      <p class="card-text"><small class="text-muted">Posted: 2/3/4</small></p>
-			      <button type="button" class="btn btn-outline-primary btn-sm">View</button>
+			      <p id="desc2" class="card-text">Brief description of the video. Can be yay long,  consectetur adipiscing elit. Nullam in nisl felis. Nulla vel eros tristique, vehicula ante ut, laoreet turpis. Mauris</p>
+			      <a id="link2" href=""><button type="button" class="btn btn-outline-primary btn-sm">View</button></a>
 			    </div>
 			  </div>
 
