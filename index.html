@@ -60,6 +60,29 @@
     	background: linear-gradient(to right, #FCAF58 0%, #FF8C42 100%);
     }
 	</style>
+
+	<!-- fetching and auto updating video javascript --> 
+	  <script type="text/javascript">
+	       var channelID = "UCjMTjOMUGit5lbDT3toa1ig";
+			var reqURL = "https://www.youtube.com/feeds/videos.xml?channel_id=";
+			
+			$.getJSON("https://api.rss2json.com/v1/api.json?rss_url=" + encodeURIComponent(reqURL)+channelID, function(data) {
+
+			    var link = data.items[0].link;
+			   	var id = link.substr(link.indexOf("=")+1);
+
+			   	var link1 = data.items[1].link;
+			   	var id1 = link.substr(link.indexOf("=")+1);
+
+			   	var link2 = data.items[2].link;
+			    var id2 = link.substr(link.indexOf("=")+1);
+
+			    document.getElementById("video").src = "https://youtube.com/embed/"+ id + "?controls=0&showinfo=0&rel=0"
+			    document.getElementById("video1").src = "https://youtube.com/embed/"+ id1 + "?controls=0&showinfo=0&rel=0"
+			    document.getElementById("video2").src = "https://youtube.com/embed/"+ id2 + "?controls=0&showinfo=0&rel=0"
+			});
+	    </script>
+	
   </head>
   <body>
   	<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
@@ -226,25 +249,4 @@
 
   </body>
 
-  <!-- fetching and auto updating video javascript --> 
-  <script type="text/javascript">
-       var channelID = "UCjMTjOMUGit5lbDT3toa1ig";
-		var reqURL = "https://www.youtube.com/feeds/videos.xml?channel_id=";
-		
-		$.getJSON("https://api.rss2json.com/v1/api.json?rss_url=" + encodeURIComponent(reqURL)+channelID, function(data) {
-
-		    var link = data.items[0].link;
-		   	var id = link.substr(link.indexOf("=")+1);
-
-		   	var link1 = data.items[1].link;
-		   	var id1 = link.substr(link.indexOf("=")+1);
-
-		   	var link2 = data.items[2].link;
-		    var id2 = link.substr(link.indexOf("=")+1);
-
-		    document.getElementById("video").src = "https://youtube.com/embed/"+ id + "?controls=0&showinfo=0&rel=0"
-		    document.getElementById("video1").src = "https://youtube.com/embed/"+ id1 + "?controls=0&showinfo=0&rel=0"
-		    document.getElementById("video2").src = "https://youtube.com/embed/"+ id2 + "?controls=0&showinfo=0&rel=0"
-		});
-    </script>
 </html>
