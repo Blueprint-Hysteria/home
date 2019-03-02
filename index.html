@@ -72,17 +72,21 @@
 			   	var id = link.substr(link.indexOf("=")+1);
 
 			   	var link1 = data.items[1].link;
-			   	var id1 = link.substr(link.indexOf("=")+1);
+			   	var id1 = link1.substr(link.indexOf("=")+1);
 
 			   	var link2 = data.items[2].link;
-			    var id2 = link.substr(link.indexOf("=")+1);
+			    var id2 = link2.substr(link.indexOf("=")+1);
 
 			    document.getElementById("video").src = "https://youtube.com/embed/"+ id + "?controls=0&showinfo=0&rel=0"
 			    document.getElementById("video1").src = "https://youtube.com/embed/"+ id1 + "?controls=0&showinfo=0&rel=0"
 			    document.getElementById("video2").src = "https://youtube.com/embed/"+ id2 + "?controls=0&showinfo=0&rel=0"
+
+			    document.getElementById("title").innerHTML = data.items[0].title
+			    document.getElementById("title1").innerHTML= data.items[1].title
+			    document.getElementById("title2").innerHTML = data.items[2].title
 			});
 	    </script>
-	
+
   </head>
   <body>
   	<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
@@ -151,7 +155,7 @@
 			  <div class="card">
 			    <iframe id="video" height="315" frameborder="0"></iframe>
 			    <div class="card-body">
-			      <h5 class="card-title">Video Title</h5>
+			      <h5 id="title" class="card-title">Video Title</h5>
 			      <p class="card-text">Brief description of the video. Can be yay long,  consectetur adipiscing elit. Nullam in nisl felis. Nulla vel eros tristique, vehicula ante ut, laoreet turpis. Mauris</p>
 			      <p class="card-text"><small class="text-muted">Posted: 2/3/4, customise me!</small></p>
 			      <button type="button" class="btn btn-outline-primary btn-sm">View</button>
@@ -162,7 +166,7 @@
 			  <div class="card">
 			    <iframe id="video1" height="315" frameborder="0"></iframe>
 			    <div class="card-body">
-			      <h5 class="card-title">Video Title</h5>
+			      <h5 id="title3" class="card-title">Video Title</h5>
 			      <p class="card-text">Brief description of the video. Can be yay long,  consectetur adipiscing elit. Nullam in nisl felis. Nulla vel eros tristique, vehicula ante ut, laoreet turpis. Mauris</p>
 			      <p class="card-text"><small class="text-muted">Posted: 2/3/4</small></p>
 			      <button type="button" class="btn btn-outline-primary btn-sm">View</button>
@@ -173,7 +177,7 @@
 			  <div class="card">
 			    <iframe id="video2" height="315" frameborder="0"></iframe>
 			    <div class="card-body">
-			      <h5 class="card-title">Video Title</h5>
+			      <h5 id="title2" class="card-title">Video Title</h5>
 			      <p class="card-text">Brief description of the video. Can be yay long,  consectetur adipiscing elit. Nullam in nisl felis. Nulla vel eros tristique, vehicula ante ut, laoreet turpis. Mauris</p>
 			      <p class="card-text"><small class="text-muted">Posted: 2/3/4</small></p>
 			      <button type="button" class="btn btn-outline-primary btn-sm">View</button>
